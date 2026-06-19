@@ -4,6 +4,7 @@ import "./globals.css";
 import { LangProvider } from "@/lib/i18n";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import Receptionist from "@/components/Receptionist";
 import { JsonLd } from "@/components/JsonLd";
 import { organizationLd, websiteLd, SITE_URL } from "@/lib/seo";
 
@@ -35,6 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Nav />
           {children}
           <Footer />
+          <Receptionist />
         </LangProvider>
       </body>
     </html>

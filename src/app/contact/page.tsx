@@ -1,18 +1,25 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useT } from "@/lib/i18n";
 import { contactPage as C, BRAND } from "@/lib/content";
 
 export default function Contact() {
   const t = useT();
-  const [interest, setInterest] = useState<string>("");
+  const [interest, setInterest] = useState<number | null>(null);
   const [sent, setSent] = useState(false);
+
+  // Preselect a service from the ?service= query param (e.g. AI receptionist CTA → ?service=ai).
+  useEffect(() => {
+    const service = new URLSearchParams(window.location.search).get("service");
+    if (service === "ai") setInterest(0);
+  }, []);
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const f = new FormData(e.currentTarget);
-    const body = `Service: ${interest || "—"}\nName: ${f.get("name")}\nPhone: ${f.get("phone")}\nEmail: ${f.get("email")}\n\n${f.get("message")}`;
+    const selected = interest != null ? t(C.options[interest]) : "—";
+    const body = `Service: ${selected}\nName: ${f.get("name")}\nPhone: ${f.get("phone")}\nEmail: ${f.get("email")}\n\n${f.get("message")}`;
     window.location.href = `mailto:${BRAND.email}?subject=${encodeURIComponent("Website enquiry")}&body=${encodeURIComponent(body)}`;
     setSent(true);
   };
@@ -35,12 +42,11 @@ export default function Contact() {
                 <div className="eyebrow mb-2 text-muted">{t(C.interest)}</div>
                 <div className="flex flex-wrap gap-2">
                   {C.options.map((o, i) => {
-                    const label = t(o);
-                    const active = interest === label;
+                    const active = interest === i;
                     return (
-                      <button type="button" key={i} onClick={() => setInterest(active ? "" : label)}
+                      <button type="button" key={i} onClick={() => setInterest(active ? null : i)}
                         className={`rounded-full border px-3.5 py-1.5 text-sm transition-colors ${active ? "border-accent bg-accent text-white" : "border-line text-muted hover:text-ink"}`}>
-                        {label}
+                        {t(o)}
                       </button>
                     );
                   })}

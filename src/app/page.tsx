@@ -65,7 +65,7 @@ export default function Home() {
                 <li key={i} className="flex items-center gap-2.5 text-sm text-ink/90"><span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-lime/20 text-xs text-lime">✓</span>{t(bn)}</li>
               ))}
             </ul>
-            <Link href="/contact" className="glow mt-8 inline-block rounded-full bg-accent px-7 py-3.5 font-semibold text-white hover:bg-accent2">{t(aiReceptionist.cta)}</Link>
+            <Link href="/contact?service=ai" className="glow mt-8 inline-block rounded-full bg-accent px-7 py-3.5 font-semibold text-white hover:bg-accent2">{t(aiReceptionist.cta)}</Link>
           </Reveal>
           <Reveal delay={0.1} className="relative">
             <div className="absolute -inset-6 -z-10 rounded-full bg-accent/20 blur-[90px]" />

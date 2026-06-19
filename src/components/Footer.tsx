@@ -14,7 +14,7 @@ export default function Footer() {
           <img src="/logo.png" alt="kAIros" className="h-7 w-auto" />
           <p className="mt-3 max-w-xs text-sm text-muted">{t(footer.tagline)}</p>
         </div>
-        <FooterCol title={t(footer.servicesTitle)} links={services.items.map((s) => ({ href: "#services", label: t(s.title) }))} />
+        <FooterCol title={t(footer.servicesTitle)} links={services.items.map((s) => ({ href: "/#services", label: t(s.title) }))} />
         <FooterCol title={t(footer.companyTitle)} links={footer.company.map((c) => ({ href: c.href, label: t(c.label) }))} />
         <FooterCol title={t(footer.legalTitle)} links={footer.legal.map((c) => ({ href: c.href, label: t(c.label) }))} />
       </div>

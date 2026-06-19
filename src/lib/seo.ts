@@ -1,7 +1,7 @@
 import { BRAND, pricingOneoff, faq, services } from "./content";
 
 // Set SITE_URL to your real domain (env SITE_URL) once you have it.
-export const SITE_URL = (process.env.SITE_URL || "https://kairos.gr").replace(/\/$/, "");
+export const SITE_URL = (process.env.SITE_URL || "https://kairos4ai.gr").replace(/\/$/, "");
 const phoneE164 = BRAND.phone.replace(/[^\d+]/g, "");
 
 // Organization / local service — global, rendered on every page
